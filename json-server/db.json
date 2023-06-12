@@ -46,5 +46,35 @@
       "id":6,
       "nome": "Bebidas"
     }
+  ],
+  "produtos":[
+    {
+      "id":1,
+      "nome": "Pão Francês",
+      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/pao-frances.jpg",
+      "preco": 0.5,
+      "categoria": 1
+    },
+    {
+      "id": 2,
+      "nome": "Pão de Queijo",
+      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/pao-de-queijo.jpg",
+      "preco": 0.5,
+      "categoria": 1
+    },
+    {
+      "id":3,
+      "nome": "Sanduíche",
+      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/sanduiche-de-queijo-e-presunto.jpg",
+      "preco": 2.5,
+      "categoria": 5
+    },
+    {
+      "id":4,
+      "nome": "Bolo de Chocolate",
+      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/bolo-de-chocolate.jpg",
+      "preco": 5.0,
+      "categoria": 2
+    }
   ]
 }

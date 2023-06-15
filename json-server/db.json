@@ -51,28 +51,28 @@
     {
       "id":1,
       "nome": "Pão Francês",
-      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/pao-frances.jpg",
+      "img": "pao_frances.jpg",
       "preco": 0.5,
       "categoria": 1
     },
     {
       "id": 2,
       "nome": "Pão de Queijo",
-      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/pao-de-queijo.jpg",
+      "img": "pao_de_queijo.jpeg",
       "preco": 0.5,
       "categoria": 1
     },
     {
       "id":3,
       "nome": "Sanduíche",
-      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/sanduiche-de-queijo-e-presunto.jpg",
+      "img": "sanduiche.jpeg",
       "preco": 2.5,
       "categoria": 5
     },
     {
       "id":4,
       "nome": "Bolo de Chocolate",
-      "img": "https://www.receitasnestle.com.br/images/default-source/recipes/bolo-de-chocolate.jpg",
+      "img": "bolo_de_chocolate.jpeg",
       "preco": 5.0,
       "categoria": 2
     }

@@ -8,6 +8,7 @@ import Head from "next/head";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import ModalProduto from "@/components/ModalProduto";
+import ModalCarrinho from "@/components/ModalCarrinho";
 type Categoria = {
     id: number;
     nome: string;
@@ -28,6 +29,8 @@ export default function HomeProdutos(){
     const [produtoModal, setProdutoModal] = useState<Produto | undefined>({} as Produto);
     const [showProdutoModal, setShowProdutoModal] = useState<boolean>(false);
 
+    const [showCarrinhoModal, setShowCarrinhoModal] = useState<boolean>(false);
+    const [produtosCarrinho, setProdutosCarrinho] = useState<Produto[]>([]);
     useEffect(()=>{
         getCategorias();
         getProdutos();
@@ -53,8 +56,14 @@ export default function HomeProdutos(){
     const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
         setShowProdutoModal(false);
     }
-    const toggleProdutoModal = ()=>{
-        setShowProdutoModal(!showProdutoModal)
+    const toggleProdutoModal = ()=>setShowProdutoModal(!showProdutoModal)
+
+    const handleCarrinho = (event: React.MouseEvent<HTMLParagraphElement,MouseEvent>)=>setShowCarrinhoModal(!showCarrinhoModal)
+    const toggleCarrinhoModal = ()=> setShowCarrinhoModal(!showCarrinhoModal)
+
+    const handleAdicionarCarrinho = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+        const id = Number(event.currentTarget.id);
+        produtosCarrinho.push(produtos.find((produto)=>produto.id === id)!)
     }
     return (
         <>
@@ -67,6 +76,11 @@ export default function HomeProdutos(){
                     <ModalProduto produto={produtoModal} isOpen={showProdutoModal} toggle={toggleProdutoModal}/>
                 </>
             )}
+            {
+                showCarrinhoModal && (
+                    <ModalCarrinho produtos={produtosCarrinho} isOpen={showCarrinhoModal} toggle={toggleCarrinhoModal}/>
+                )
+            }
             <HeaderMenu/>
             <main className="absolute z-0">
                 <div className="flex flex-row justify-between mx-[15%] mt-12">
@@ -75,7 +89,7 @@ export default function HomeProdutos(){
                         <input type="search" name="search" id="search" className="border-zinc-500 border rounded-md focus-visible:border-zinc-500"/>
                     </div>
                     <h1 className="text-zinc-500 text-xl font-bold ml-6">{selectedCategory!.nome}</h1>
-                    <p className="text-zinc-500 text-xl">
+                    <p className="text-zinc-500 text-xl hover:cursor-pointer" onClick={handleCarrinho}>
                         <FontAwesomeIcon icon={faCartShopping}/>
                         Carrinho
                     </p>
@@ -96,7 +110,7 @@ export default function HomeProdutos(){
                         <div className="flex flex-row w-full flex-wrap gap-x-[1.6rem] gap-y-8">
                             {produtosFiltered.length > 0 ? produtosFiltered.map((produto)=>(
                                 <div key={produto.id} className="flex flex-row items-center justify-between w-[45%] ml-6 py-2 shadow-slate-400 shadow-md p-6 rounded-2xl" onClick={handleProdutoModalClick}>
-                                    <div className="flex flex-rox items-center">
+                                    <div className="flex flex-row items-center">
                                         <img src={produto.img} className="w-20 h-20 rounded-xl"/>
                                         <div className="flex flex-col ml-4">
                                             <h1 className="text-zinc-500 text-base font-bold">{produto.nome}</h1>
@@ -104,7 +118,7 @@ export default function HomeProdutos(){
                                         </div>
                                     </div>
                                     <div className="flex flex-row items-center">
-                                        <button className="bg-zinc-500 text-white font-bold rounded-xl px-4 py-2">Adicionar</button>
+                                        <button id={produto.id.toString()} className="bg-zinc-500 text-white font-bold rounded-xl px-4 py-2 cursor-pointer z-10"  onClick={handleAdicionarCarrinho}>Adicionar</button>
                                     </div>
                                 </div>
                             )): <h1 className="text-zinc-500 text-lg text-center">Nenhum produto cadastrado</h1>}

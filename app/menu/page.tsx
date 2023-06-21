@@ -49,6 +49,10 @@ export default function HomeProdutos(){
         setSelectedCategory(selectedCategory);
         setProdutosFiltered(produtos.filter((produto)=>produto.categoria === selectedCategory?.id))
     }
+    const handleAllCategories = (event: React.MouseEvent<HTMLHeadingElement, MouseEvent>)=>{
+        setSelectedCategory({id: 9999, nome: "Todos os produtos"});
+        setProdutosFiltered(produtos);
+    }
     const handleProdutoModalClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
         setProdutoModal(produtos.find((produto)=>produto.id === Number(event.currentTarget.dataset.produtoId)));
         setShowProdutoModal(true);
@@ -82,7 +86,7 @@ export default function HomeProdutos(){
                 )
             }
             <HeaderMenu/>
-            <main className="absolute z-0 bg-fundo">
+            <main className="absolute z-0 bg-fundo w-full">
                 <div className="flex flex-row justify-between mx-[15%] mt-12">
                     <div className="flex flex-row gap-5">
                         <label htmlFor="search" className="text-clarinho text-xl">Buscar:</label>
@@ -97,7 +101,7 @@ export default function HomeProdutos(){
                 <main className="flex flex-row h-full mx-[15%] mt-12 gap-6">
                     <aside className="w-1/5 h-full">
                         <div className="categorias mt-8 pb-8">
-                            <h1 className="text-clarinho text-xl font-bold mb-5">Categorias</h1>
+                            <h1 className="text-clarinho text-xl font-bold mb-5 cursor-pointer" onClick={handleAllCategories}>Categorias</h1>
                             <ul className="flex flex-col items-start gap-4">
                                 {categorias.length > 0 ? categorias.map((categoria)=>(
                                     <a key={categoria.id} className="text-clarinho text-lg mb-2 border-b w-full hover:cursor-pointer hover:text-zinc-300 shadow-[0_1px_0_#fdba74]" onClick={handleCategoryClick}>{categoria.nome}</a>
@@ -108,7 +112,7 @@ export default function HomeProdutos(){
                     <div className="w-[80%] h-full flex flex-col gap-5">
                         <div className="flex flex-row w-full flex-wrap gap-x-[1.6rem] gap-y-8">
                             {produtosFiltered.length > 0 ? produtosFiltered.map((produto)=>(
-                                <div key={produto.id} className="flex flex-row items-center justify-between w-[45%] ml-6 py-2 shadow-orange-300 shadow-md p-6 rounded-2xl bg-fundoEscuro">
+                                <div key={produto.id} className="flex flex-row items-center justify-between w-[45%] ml-6 py-4 p-6 rounded-2xl bg-fundoEscuro shadow-[0_0px_0px_#fdba74,0_4px_0px_0px_#fdba74]">
                                     <div className="flex flex-row items-center">
                                         <img src={produto.img} className="w-20 h-20 rounded-xl"/>
                                         <div className="flex flex-col ml-4">

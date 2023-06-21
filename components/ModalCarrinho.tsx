@@ -13,8 +13,8 @@ export default function ModalCarrinho({produtos,isOpen,toggle}: props){
             {
                 isOpen && (
                     <>
-                        <div className="absolute w-1/2  top-1/4 left-1/4 right-1/2 bottom-1/2 z-10 bg-inherit shadow-slate-400 shadow-2xl flex flex-col">
-                            <FontAwesomeIcon icon={faX} className="text-zinc-500 absolute right-5 top-3 cursor-pointer" onClick={toggle}/>
+                        <div className="absolute w-1/2  top-1/4 left-1/4 right-1/2 bottom-1/2 z-10 bg-inherit shadow-slate-400 shadow-2xl flex flex-col rounded-3xl pt-5">
+                            <FontAwesomeIcon icon={faX} className="text-zinc-500 absolute right-7 top-5 cursor-pointer" onClick={toggle}/>
                             <div className="w-full h-1/5 flex flex-col justify-center items-center">
                                 <p className="text-zinc-500 text-2xl">Carrinho</p>
                             </div>
